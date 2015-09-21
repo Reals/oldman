@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+
+$file_in = $ARGV[0]; # uploaded filename
+$file_cm = $ARGV[1]; # comments
+$r_repo = $ARGV[2]; # remote repository
+$r_brch = $ARGV[3]; # remote branch(:codeVersion)
+
+$file_in = ((length $file_in) == 0) ? "." : $file_in;
+$file_cm = ((length $file_cm) == 0) ? "updated" : $file_cm;
+$r_repo = ((length $r_repo) == 0) ? "" : $r_repo;
+$r_brch = ((length $r_brch) == 0) ? "" : $r_brch;
+
+#print $file_in."\n";
+#print $file_cm."\n";
+#print $r_repo."\n";
+#print $r_brch."\n";
+
+system("git add $file_in");
+system("git commit -m \"$file_cm\" $file_in");
+system("git push $r_repo $r_brch");
